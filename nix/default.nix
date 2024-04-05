@@ -61,4 +61,6 @@ symlinkJoin {
       "--prefix POLYMC_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}"
       "--set LD_LIBRARY_PATH ${addOpenGLRunpath.driverLink}/lib:${lib.makeLibraryPath runtimeLibs}"
     ];
+
+    inherit (polymcInner) meta;
 }
