@@ -14,6 +14,7 @@
 , qtbase
 , quazip
 , libGL
+, vulkan-loader
 , msaClientID ? ""
 , extraJDKs ? [ ]
 , extra-cmake-modules
@@ -36,6 +37,7 @@ let
     libXxf86vm
     libpulseaudio
     libGL
+    vulkan-loader # VulkanMod's lwjgl
   ];
 
   # This variable will be passed to Minecraft by PolyMC
