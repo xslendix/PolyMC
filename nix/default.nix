@@ -13,6 +13,8 @@
 , glfw
 , openal
 , udev
+, wayland
+, qtwayland
 , msaClientID ? ""
 , jdks ? [ jdk17 jdk8 ]
 , enableLTO ? false
@@ -32,7 +34,7 @@ symlinkJoin {
   paths = [ polymcInner ];
 
   nativeBuildInputs = [ wrapQtAppsHook ];
-  buildInputs = [ qtbase ];
+  buildInputs = [ qtbase qtwayland ];
 
   postBuild = ''
     wrapQtAppsHook
@@ -55,6 +57,7 @@ symlinkJoin {
         openal
         stdenv.cc.cc.lib
         udev # OSHI
+        wayland
       ];
     in
     [
