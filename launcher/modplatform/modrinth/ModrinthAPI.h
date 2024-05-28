@@ -55,7 +55,7 @@ class ModrinthAPI : public NetworkModAPI {
     static auto getModLoaderStrings(const ModLoaderTypes types) -> const QStringList
     {
         QStringList l;
-        for (auto loader : {Forge, Fabric, Quilt})
+        for (auto loader : {Forge, NeoForge, Fabric, Quilt})
         {
             if ((types & loader) || types == Unspecified)
             {
@@ -81,7 +81,7 @@ class ModrinthAPI : public NetworkModAPI {
     inline auto getModSearchURL(SearchArgs& args) const -> QString override
     {
         if (!validateModLoaders(args.loaders)) {
-            qWarning() << "Modrinth only have Forge and Fabric-compatible mods!";
+            qWarning() << "Modrinth only have Forge, NeoForge and Fabric-compatible mods!";
             return "";
         }
 
@@ -132,7 +132,7 @@ class ModrinthAPI : public NetworkModAPI {
 
     inline auto validateModLoaders(ModLoaderTypes loaders) const -> bool
     {
-        return (loaders == Unspecified) || (loaders & (Forge | Fabric | Quilt));
+        return (loaders == Unspecified) || (loaders & (Forge | NeoForge | Fabric | Quilt));
     }
 
 };

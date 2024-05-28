@@ -60,6 +60,7 @@
 
 static const QMap<QString, ModAPI::ModLoaderType> modloaderMapping{
     {"net.minecraftforge", ModAPI::Forge},
+    {"net.neoforged.neoforge", ModAPI::NeoForge},
     {"net.fabricmc.fabric-loader", ModAPI::Fabric},
     {"org.quiltmc.quilt-loader", ModAPI::Quilt}
 };

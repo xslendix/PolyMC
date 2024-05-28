@@ -240,6 +240,9 @@ void VersionPage::updateVersionControls()
 
     ui->actionInstall_Forge->setEnabled(controlsEnabled);
 
+    bool supportsNeoForge = minecraftVersion >= Version("1.20.1");
+    ui->actionInstall_NeoForge->setEnabled(controlsEnabled && supportsNeoForge);
+
     bool supportsFabric = minecraftVersion >= Version("1.14");
     ui->actionInstall_Fabric->setEnabled(controlsEnabled && supportsFabric);
 
@@ -466,6 +469,35 @@ void VersionPage::on_actionInstall_Forge_triggered()
     {
         auto vsn = vselect.selectedVersion();
         m_profile->setComponentVersion("net.minecraftforge", vsn->descriptor());
+        m_profile->resolve(Net::Mode::Online);
+        // m_profile->installVersion();
+        preselect(m_profile->rowCount(QModelIndex())-1);
+        m_container->refreshContainer();
+    }
+}
+
+void VersionPage::on_actionInstall_NeoForge_triggered()
+{
+    auto vlist = APPLICATION->metadataIndex()->get("net.neoforged.neoforge");
+    if(!vlist)
+    {
+        return;
+    }
+    VersionSelectDialog vselect(vlist.get(), tr("Select NeoForge version"), this);
+    vselect.setExactFilter(BaseVersionList::ParentVersionRole, m_profile->getComponentVersion("net.minecraft"));
+    vselect.setEmptyString(tr("No NeoForge versions are currently available for Minecraft ") + m_profile->getComponentVersion("net.minecraft"));
+    vselect.setEmptyErrorString(tr("Couldn't load or download the NeoForge version lists!"));
+
+    auto currentVersion = m_profile->getComponentVersion("net.neoforged.neoforge");
+    if(!currentVersion.isEmpty())
+    {
+        vselect.setCurrentVersion(currentVersion);
+    }
+
+    if (vselect.exec() && vselect.selectedVersion())
+    {
+        auto vsn = vselect.selectedVersion();
+        m_profile->setComponentVersion("net.neoforged.neoforge", vsn->descriptor());
         m_profile->resolve(Net::Mode::Online);
         // m_profile->installVersion();
         preselect(m_profile->rowCount(QModelIndex())-1);

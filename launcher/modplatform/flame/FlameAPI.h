@@ -79,6 +79,8 @@ class FlameAPI : public NetworkModAPI {
         // TODO: remove this once Quilt drops official Fabric support
         if (loaders & Quilt)  // NOTE: Most if not all Fabric mods should work *currently*
             return 4;  // Quilt would probably be 5
+        if (loaders & NeoForge)
+            return 6;
         return 0;
     }
 };
