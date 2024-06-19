@@ -19,9 +19,9 @@
 , msaClientID ? ""
 , jdks ? [ jdk21 jdk17 jdk8 ]
 , enableLTO ? false
-  # flake
 , self
 , version
+  # flake
 }:
 
 let
