@@ -6,6 +6,7 @@
 , wrapQtAppsHook
 , jdk8
 , jdk17
+, jdk21
 , xorg
 , libpulseaudio
 , qtbase
@@ -16,11 +17,11 @@
 , wayland
 , qtwayland
 , msaClientID ? ""
-, jdks ? [ jdk17 jdk8 ]
+, jdks ? [ jdk21 jdk17 jdk8 ]
 , enableLTO ? false
-  # flake
 , self
 , version
+  # flake
 }:
 
 let
