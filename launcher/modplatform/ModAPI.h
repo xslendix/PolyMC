@@ -57,11 +57,11 @@ class ModAPI {
     enum ModLoaderType {
         Unspecified = 0,
         Forge = 1 << 0,
-        NeoForge = 1 << 1,
-        Cauldron = 1 << 2,
-        LiteLoader = 1 << 3,
-        Fabric = 1 << 4,
-        Quilt = 1 << 5
+        Cauldron = 1 << 1,
+        LiteLoader = 1 << 2,
+        Fabric = 1 << 3,
+        Quilt = 1 << 4,
+        NeoForge = 1 << 5
     };
     Q_DECLARE_FLAGS(ModLoaderTypes, ModLoaderType)
 
