@@ -215,6 +215,8 @@ bool ModrinthCreationTask::createInstance()
         components->setComponentVersion("org.quiltmc.quilt-loader", quiltVersion);
     if (!forgeVersion.isEmpty())
         components->setComponentVersion("net.minecraftforge", forgeVersion);
+    if (!neoforgeVersion.isEmpty())
+        components->setComponentVersion("net.neoforged.neoforge", neoforgeVersion);
 
     if (m_instIcon != "default") {
         instance.setIconKey(m_instIcon);
@@ -385,6 +387,8 @@ bool ModrinthCreationTask::parseManifest(const QString& index_path, std::vector<
                     quiltVersion = Json::requireString(*it, "Quilt Loader version");
                 } else if (name == "forge") {
                     forgeVersion = Json::requireString(*it, "Forge version");
+                } else if (name == "neoforge") {
+                    neoforgeVersion = Json::requireString(*it, "NeoForge version");
                 } else {
                     throw JSONValidationError("Unknown dependency type: " + name);
                 }

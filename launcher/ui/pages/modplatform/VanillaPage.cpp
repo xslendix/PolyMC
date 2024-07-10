@@ -64,6 +64,7 @@ VanillaPage::VanillaPage(NewInstanceDialog *dialog, QWidget *parent)
     connect(ui->loaderVersionList, &VersionSelectWidget::selectedVersionChanged, this, &VanillaPage::setSelectedLoaderVersion);
     connect(ui->noneFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
     connect(ui->forgeFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
+    connect(ui->neoForgeFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
     connect(ui->fabricFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
     connect(ui->quiltFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
     connect(ui->liteLoaderFilter, &QRadioButton::toggled, this, &VanillaPage::loaderFilterChanged);
@@ -141,6 +142,11 @@ void VanillaPage::loaderFilterChanged()
     {
         ui->loaderVersionList->setExactFilter(BaseVersionList::ParentVersionRole, minecraftVersion);
         m_selectedLoader = "net.minecraftforge";
+    }
+    else if(ui->neoForgeFilter->isChecked())
+    {
+        ui->loaderVersionList->setExactFilter(BaseVersionList::ParentVersionRole, minecraftVersion);
+        m_selectedLoader = "net.neoforged.neoforge";
     }
     else if(ui->fabricFilter->isChecked())
     {

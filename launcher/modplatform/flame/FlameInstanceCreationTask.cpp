@@ -257,6 +257,7 @@ bool FlameCreationTask::createInstance()
 
     QString forgeVersion;
     QString fabricVersion;
+    QString neoforgeVersion;
     // TODO: is Quilt relevant here?
     for (auto& loader : m_pack.minecraft.modLoaders) {
         auto id = loader.id;
@@ -268,6 +269,11 @@ bool FlameCreationTask::createInstance()
         if (id.startsWith("fabric-")) {
             id.remove("fabric-");
             fabricVersion = id;
+            continue;
+        }
+        if (id.startsWith("neoforge-")) {
+            id.remove("neoforge-");
+            neoforgeVersion = id;
             continue;
         }
         logWarning(tr("Unknown mod loader in manifest: %1").arg(id));
@@ -300,6 +306,8 @@ bool FlameCreationTask::createInstance()
     }
     if (!fabricVersion.isEmpty())
         components->setComponentVersion("net.fabricmc.fabric-loader", fabricVersion);
+    if (!neoforgeVersion.isEmpty())
+        components->setComponentVersion("net.neoforged.neoforge", neoforgeVersion);
 
     if (m_instIcon != "default") {
         instance.setIconKey(m_instIcon);
