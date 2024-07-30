@@ -8,6 +8,8 @@
 , jdk17
 , jdk21
 , xorg
+, gamemode
+, glxinfo
 , libpulseaudio
 , qtbase
 , libGL
@@ -19,13 +21,16 @@
 , msaClientID ? ""
 , jdks ? [ jdk21 jdk17 jdk8 ]
 , enableLTO ? false
+, gamemodeSupport ? stdenv.isLinux
+, additionalLibs ? [ ]
+, additionalBins ? [ ]
 , self
 , version
   # flake
 }:
 
 let
-  polymcInner = polymc-unwrapped.override { inherit msaClientID enableLTO; };
+  polymcInner = polymc-unwrapped.override { inherit msaClientID enableLTO gamemodeSupport; };
 in
 
 symlinkJoin {
@@ -59,12 +64,21 @@ symlinkJoin {
         stdenv.cc.cc.lib
         udev # OSHI
         wayland
-      ];
+      ]
+      ++ lib.optional gamemodeSupport gamemode.lib
+      ++ additionalLibs;
+
+      runtimeBins = [
+        # Required by old LWJGL versions
+        xorg.xrandr
+        glxinfo
+      ] ++ additionalBins;
     in
     [
       "--prefix POLYMC_JAVA_PATHS : ${lib.makeSearchPath "bin/java" jdks}"
       "--set LD_LIBRARY_PATH ${addOpenGLRunpath.driverLink}/lib:${lib.makeLibraryPath runtimeLibs}"
+      "--prefix PATH : ${lib.makeBinPath runtimeBins}"
     ];
 
-    inherit (polymcInner) meta;
+  inherit (polymcInner) meta;
 }
