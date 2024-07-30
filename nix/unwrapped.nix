@@ -3,12 +3,12 @@
 , cmake
 , ninja
 , jdk8
+, gamemode
 , ghc_filesystem
 , zlib
 , file
 , qtbase
 , quazip
-, msaClientID ? ""
 , extra-cmake-modules
 , qtcharts
 , qtwayland
@@ -17,6 +17,8 @@
 , version
 , libnbtplusplus
 , tomlplusplus
+, msaClientID ? ""
+, gamemodeSupport ? stdenv.isLinux
 , enableLTO ? false
 }:
 
@@ -27,7 +29,9 @@ stdenv.mkDerivation {
   src = lib.cleanSource self;
 
   nativeBuildInputs = [ cmake extra-cmake-modules ninja jdk8 ghc_filesystem file ];
-  buildInputs = [ qtbase quazip zlib qtcharts ] ++ lib.optional (lib.versionAtLeast qtbase.version "6") qtwayland;
+  buildInputs = [ qtbase quazip zlib qtcharts ]
+    ++ lib.optional (lib.versionAtLeast qtbase.version "6") qtwayland
+    ++ lib.optional gamemodeSupport gamemode;
 
   postUnpack = ''
     # Copy libnbtplusplus
@@ -47,6 +51,7 @@ stdenv.mkDerivation {
   cmakeFlags = [
     "-GNinja"
     "-DLauncher_QT_VERSION_MAJOR=${lib.versions.major qtbase.version}"
+    "-DLauncher_BUILD_PLATFORM=nix"
   ]
   ++ lib.optionals enableLTO [ "-DENABLE_LTO=on" ]
   ++ lib.optionals (msaClientID != "") [ "-DLauncher_MSA_CLIENT_ID=${msaClientID}" ];
