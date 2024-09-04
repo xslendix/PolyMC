@@ -261,7 +261,6 @@ public:
     TranslatedToolButton helpMenuButton;
     TranslatedAction actionReportBug;
     TranslatedAction actionDISCORD;
-    TranslatedAction actionMATRIX;
     TranslatedAction actionREDDIT;
     TranslatedAction actionAbout;
 
@@ -357,15 +356,6 @@ public:
             all_actions.append(&actionReportBug);
         }
 
-        if(!BuildConfig.MATRIX_URL.isEmpty()) {
-            actionMATRIX = TranslatedAction(MainWindow);
-            actionMATRIX->setObjectName(QStringLiteral("actionMATRIX"));
-            actionMATRIX->setIcon(APPLICATION->getThemedIcon("matrix"));
-            actionMATRIX.setTextId(QT_TRANSLATE_NOOP("MainWindow", "&Matrix Space"));
-            actionMATRIX.setTooltipId(QT_TRANSLATE_NOOP("MainWindow", "Open %1 Matrix space"));
-            all_actions.append(&actionMATRIX);
-        }
-
         if (!BuildConfig.DISCORD_URL.isEmpty()) {
             actionDISCORD = TranslatedAction(MainWindow);
             actionDISCORD->setObjectName(QStringLiteral("actionDISCORD"));
@@ -450,10 +440,6 @@ public:
             helpMenu->addAction(actionReportBug);
         }
         
-        if(!BuildConfig.MATRIX_URL.isEmpty()) {
-            helpMenu->addAction(actionMATRIX);
-        }
-
         if (!BuildConfig.DISCORD_URL.isEmpty()) {
             helpMenu->addAction(actionDISCORD);
         }
@@ -544,8 +530,6 @@ public:
         helpMenu->addSeparator();
         if (!BuildConfig.BUG_TRACKER_URL.isEmpty())
             helpMenu->addAction(actionReportBug);
-        if (!BuildConfig.MATRIX_URL.isEmpty())
-            helpMenu->addAction(actionMATRIX);
         if (!BuildConfig.DISCORD_URL.isEmpty())
             helpMenu->addAction(actionDISCORD);
         if (!BuildConfig.SUBREDDIT_URL.isEmpty())
@@ -1790,11 +1774,6 @@ void MainWindow::on_actionREDDIT_triggered()
 void MainWindow::on_actionDISCORD_triggered()
 {
     DesktopServices::openUrl(QUrl(BuildConfig.DISCORD_URL));
-}
-
-void MainWindow::on_actionMATRIX_triggered()
-{
-    DesktopServices::openUrl(QUrl(BuildConfig.MATRIX_URL));
 }
 
 void MainWindow::on_actionChangeInstIcon_triggered()
