@@ -183,6 +183,30 @@
             </property>
            </widget>
           </item>
+          <item>
+           <widget class="QLabel" name="labelModPlatform">
+            <property name="toolTip">
+             <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;The default platform to select when downloading mods.&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+            </property>
+            <property name="text">
+             <string>Default Mod Platform:</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QComboBox" name="modPlatform">
+            <item>
+             <property name="text">
+              <string>Modrinth</string>
+             </property>
+            </item>
+            <item>
+             <property name="text">
+              <string>Curseforge</string>
+             </property>
+            </item>
+           </widget>
+          </item>
          </layout>
         </widget>
        </item>
