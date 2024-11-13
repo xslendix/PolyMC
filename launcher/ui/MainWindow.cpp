@@ -1878,7 +1878,7 @@ void MainWindow::undoTrashInstance()
 void MainWindow::on_actionViewInstanceFolder_triggered()
 {
     QString str = APPLICATION->settings()->get("InstanceDir").toString();
-    DesktopServices::openDirectory(str);
+    DesktopServices::openPath(str);
 }
 
 void MainWindow::refreshInstances()
@@ -1888,7 +1888,7 @@ void MainWindow::refreshInstances()
 
 void MainWindow::on_actionViewCentralModsFolder_triggered()
 {
-    DesktopServices::openDirectory(APPLICATION->settings()->get("CentralModsDir").toString(), true);
+    DesktopServices::openPath(APPLICATION->settings()->get("CentralModsDir").toString(), true);
 }
 
 void MainWindow::on_actionConfig_Folder_triggered()
@@ -1896,7 +1896,7 @@ void MainWindow::on_actionConfig_Folder_triggered()
     if (m_selectedInstance)
     {
         QString str = m_selectedInstance->instanceConfigFolder();
-        DesktopServices::openDirectory(QDir(str).absolutePath());
+        DesktopServices::openPath(QDir(str).absolutePath());
     }
 }
 
@@ -2052,7 +2052,7 @@ void MainWindow::on_actionViewSelectedInstFolder_triggered()
     if (m_selectedInstance)
     {
         QString str = m_selectedInstance->instanceRoot();
-        DesktopServices::openDirectory(QDir(str).absolutePath());
+        DesktopServices::openPath(QDir(str).absolutePath());
     }
 }
 
@@ -2066,7 +2066,7 @@ void MainWindow::on_actionViewSelectedMCFolder_triggered()
             // TODO: report error
             return;
         }
-        DesktopServices::openDirectory(QDir(str).absolutePath());
+        DesktopServices::openPath(QDir(str).absolutePath());
     }
 }
 
