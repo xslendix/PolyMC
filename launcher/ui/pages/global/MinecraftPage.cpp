@@ -117,10 +117,6 @@ void MinecraftPage::loadSettings()
     ui->enableMangoHud->setChecked(s->get("EnableMangoHud").toBool());
     ui->useDiscreteGpuCheck->setChecked(s->get("UseDiscreteGpu").toBool());
 
-#if !defined(Q_OS_LINUX)
-    ui->perfomanceGroupBox->setVisible(false);
-#endif
-
     if (!(APPLICATION->capabilities() & Application::SupportsGameMode)) {
         ui->enableFeralGamemodeCheck->setDisabled(true);
         ui->enableFeralGamemodeCheck->setToolTip(tr("Feral Interactive's GameMode could not be found on your system."));
