@@ -13,6 +13,7 @@
 , libpulseaudio
 , qtbase
 , libGL
+, vulkan-loader
 , glfw
 , openal
 , udev
@@ -30,6 +31,22 @@
 }:
 
 let
+  # Libraries required to run Minecraft
+  libpath = with xorg; lib.makeLibraryPath [
+    libX11
+    libXext
+    libXcursor
+    libXrandr
+    libXxf86vm
+    libpulseaudio
+    libGL
+    vulkan-loader # VulkanMod's lwjgl
+  ];
+
+  # This variable will be passed to Minecraft by PolyMC
+  gameLibraryPath = libpath + ":/run/opengl-driver/lib";
+
+  javaPaths = lib.makeSearchPath "bin/java" ([ jdk jdk8 ] ++ extraJDKs);
   polymcInner = polymc-unwrapped.override { inherit msaClientID enableLTO gamemodeSupport; };
 in
 
