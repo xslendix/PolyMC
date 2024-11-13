@@ -441,6 +441,10 @@ QList<QString> JavaUtils::FindJavaPaths()
     scanJavaDir("/usr/lib/jvm");
     scanJavaDir("/usr/lib64/jvm");
     scanJavaDir("/usr/lib32/jvm");
+    // Gentoo's locations for openjdk and openjdk-bin respectively
+    scanJavaDir("/usr/lib64");
+    scanJavaDir("/usr/lib");
+    scanJavaDir("/opt");
     // javas stored in PolyMC's folder
     scanJavaDir("java");
     // manually installed JDKs in /opt
