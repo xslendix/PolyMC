@@ -60,7 +60,8 @@ class ModAPI {
         Cauldron = 1 << 1,
         LiteLoader = 1 << 2,
         Fabric = 1 << 3,
-        Quilt = 1 << 4
+        Quilt = 1 << 4,
+        NeoForge = 1 << 5
     };
     Q_DECLARE_FLAGS(ModLoaderTypes, ModLoaderType)
 
@@ -93,6 +94,8 @@ class ModAPI {
                 break;
             case Forge:
                 return "forge";
+            case NeoForge:
+                return "neoforge";
             case Cauldron:
                 return "cauldron";
             case LiteLoader:

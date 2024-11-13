@@ -83,6 +83,8 @@ ModDownloadDialog::ModDownloadDialog(const std::shared_ptr<ModFolderModel>& mods
     setWindowTitle(dialogTitle());
 
     restoreGeometry(QByteArray::fromBase64(APPLICATION->settings()->get("ModDownloadGeometry").toByteArray()));
+
+    m_container->selectPage(APPLICATION->settings()->get("DefaultModPlatform").toString().toLower());
 }
 
 QString ModDownloadDialog::dialogTitle()

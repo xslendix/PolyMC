@@ -96,8 +96,6 @@ private slots:
 
     void on_actionREDDIT_triggered();
 
-    void on_actionMATRIX_triggered();
-
     void on_actionDISCORD_triggered();
 
     void on_actionCopyInstance_triggered();
@@ -105,6 +103,9 @@ private slots:
     void on_actionChangeInstGroup_triggered();
 
     void on_actionChangeInstIcon_triggered();
+
+    void on_actionCreateShortcut_triggered();
+
     void on_changeIconButton_clicked(bool)
     {
         on_actionChangeInstIcon_triggered();

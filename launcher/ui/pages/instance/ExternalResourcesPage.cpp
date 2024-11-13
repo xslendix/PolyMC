@@ -63,6 +63,9 @@ QMenu* ExternalResourcesPage::createPopupMenu()
 void ExternalResourcesPage::ShowContextMenu(const QPoint& pos)
 {
     auto menu = ui->actionsToolbar->createContextMenu(this, tr("Context menu"));
+    if(menu->actions().contains(ui->actionUpdateItem)) {
+        menu->insertAction(ui->actionUpdateItem, ui->actionDisableUpdates);
+    }
     menu->exec(ui->treeView->mapToGlobal(pos));
     delete menu;
 }
@@ -187,12 +190,12 @@ void ExternalResourcesPage::disableItem()
 
 void ExternalResourcesPage::viewConfigs()
 {
-    DesktopServices::openDirectory(m_instance->instanceConfigFolder(), true);
+    DesktopServices::openPath(m_instance->instanceConfigFolder(), true);
 }
 
 void ExternalResourcesPage::viewFolder()
 {
-    DesktopServices::openDirectory(m_model->dir().absolutePath(), true);
+    DesktopServices::openPath(m_model->dir().absolutePath(), true);
 }
 
 bool ExternalResourcesPage::current(const QModelIndex& current, const QModelIndex& previous)

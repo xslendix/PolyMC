@@ -297,7 +297,7 @@ void LocalModParseTask::processAsZip()
 
     QuaZipFile file(&zip);
 
-    if (zip.setCurrentFile("META-INF/mods.toml")) {
+    if (zip.setCurrentFile("META-INF/neoforge.mods.toml") || zip.setCurrentFile("META-INF/mods.toml")) {
         if (!file.open(QIODevice::ReadOnly)) {
             zip.close();
             return;

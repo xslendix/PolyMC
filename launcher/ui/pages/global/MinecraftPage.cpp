@@ -46,7 +46,6 @@
 MinecraftPage::MinecraftPage(QWidget *parent) : QWidget(parent), ui(new Ui::MinecraftPage)
 {
     ui->setupUi(this);
-    ui->tabWidget->tabBar()->hide();
     loadSettings();
     updateCheckboxStuff();
 }
@@ -117,10 +116,6 @@ void MinecraftPage::loadSettings()
     ui->enableFeralGamemodeCheck->setChecked(s->get("EnableFeralGamemode").toBool());
     ui->enableMangoHud->setChecked(s->get("EnableMangoHud").toBool());
     ui->useDiscreteGpuCheck->setChecked(s->get("UseDiscreteGpu").toBool());
-
-#if !defined(Q_OS_LINUX)
-    ui->perfomanceGroupBox->setVisible(false);
-#endif
 
     if (!(APPLICATION->capabilities() & Application::SupportsGameMode)) {
         ui->enableFeralGamemodeCheck->setDisabled(true);
