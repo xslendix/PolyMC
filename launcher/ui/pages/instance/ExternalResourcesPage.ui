@@ -64,7 +64,7 @@
        <bool>true</bool>
       </property>
       <property name="dragDropMode">
-       <enum>QAbstractItemView::DropOnly</enum>
+       <enum>QAbstractItemView::DragDropMode::DropOnly</enum>
       </property>
      </widget>
     </item>
@@ -75,7 +75,7 @@
     <string>Actions</string>
    </property>
    <property name="toolButtonStyle">
-    <enum>Qt::ToolButtonTextOnly</enum>
+    <enum>Qt::ToolButtonStyle::ToolButtonTextOnly</enum>
    </property>
    <attribute name="toolBarArea">
     <enum>RightToolBarArea</enum>
@@ -84,6 +84,7 @@
     <bool>false</bool>
    </attribute>
    <addaction name="actionAddItem"/>
+   <addaction name="actionDisableUpdates"/>
    <addaction name="separator"/>
    <addaction name="actionRemoveItem"/>
    <addaction name="actionEnableItem"/>
@@ -156,6 +157,17 @@
    </property>
    <property name="toolTip">
     <string>Try to check or update all selected resources (all resources if none are selected)</string>
+   </property>
+  </action>
+  <action name="actionDisableUpdates">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Disable Update Check</string>
+   </property>
+   <property name="toolTip">
+    <string>Disable mod updates for selected resources</string>
    </property>
   </action>
  </widget>
