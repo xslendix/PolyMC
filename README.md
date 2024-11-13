@@ -30,22 +30,13 @@ Feel free to create an issue if you need help. However, you might find it easier
 
 [![PolyMC Discord](https://img.shields.io/discord/923671181020766230?label=PolyMC%20Discord)](https://discord.gg/xq7fxrgtMP)
 
-For people who don't want to use Discord, we have a Matrix Space which is bridged to the Discord server:
-
-[![PolyMC Space](https://img.shields.io/matrix/polymc:matrix.org?label=PolyMC%20space)](https://matrix.to/#/#polymc:matrix.org)
-
-If there are any issues with the space or you are using a client that does not support the feature here are the individual rooms:
-
-[![News](https://img.shields.io/matrix/polymc-news:matrix.org?label=PolyMC%20News)](https://matrix.to/#/#polymc-news:matrix.org)
-[![Discussion](https://img.shields.io/matrix/polymc-discussion:matrix.org?label=PolyMC%20Discussion)](https://matrix.to/#/#polymc-discussion:matrix.org)
-
 We also have a subreddit you can post your issues and suggestions on:
 
 [r/PolyMCLauncher](https://www.reddit.com/r/PolyMCLauncher/)
 
 # Development
 
-If you want to contribute to PolyMC you might find it useful to join our Discord Server or Matrix Space.
+If you want to contribute to PolyMC you might find it useful to join our Discord Server.
 
 ## Building
 

@@ -138,7 +138,6 @@ class Config {
 
     QString BUG_TRACKER_URL;
     QString TRANSLATIONS_URL;
-    QString MATRIX_URL;
     QString DISCORD_URL;
     QString SUBREDDIT_URL;
 
