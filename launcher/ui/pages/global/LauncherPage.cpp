@@ -372,6 +372,7 @@ void LauncherPage::applySettings()
 
     // Mods
     s->set("ModMetadataDisabled", ui->metadataDisableBtn->isChecked());
+    s->set("DefaultModPlatform", ui->modPlatform->currentText());
 }
 void LauncherPage::loadSettings()
 {
@@ -513,6 +514,7 @@ void LauncherPage::loadSettings()
     // Mods
     ui->metadataDisableBtn->setChecked(s->get("ModMetadataDisabled").toBool());
     ui->metadataWarningLabel->setHidden(!ui->metadataDisableBtn->isChecked());
+    ui->modPlatform->setCurrentText(s->get("DefaultModPlatform").toString());
 }
 
 void LauncherPage::refreshFontPreview()
