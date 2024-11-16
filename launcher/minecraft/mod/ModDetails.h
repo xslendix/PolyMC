@@ -58,7 +58,7 @@ enum class ModLoader {
     LiteLoader,
 };
 
-[[maybe_unused]] static QString const ModLoader_string(ModLoader const mod_loader)
+inline QString const ModLoader_string(ModLoader const mod_loader)
 {
     switch (mod_loader) {
         case ModLoader::Unknown:
@@ -74,6 +74,8 @@ enum class ModLoader {
         case ModLoader::LiteLoader:
             return "Lite";
     }
+    // FIXME: Change to std::unreachable() whenever switching to C++23.
+    return "Unknown";
 }
 
 struct ModDetails {
