@@ -169,7 +169,7 @@ auto Mod::status() const -> ModStatus
     return details().status;
 }
 
-auto Mod::loader() const -> QString
+auto Mod::loader() const -> ModLoader
 {
     return details().loader;
 }
